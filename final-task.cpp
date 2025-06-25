@@ -13,10 +13,43 @@ float CalcFee(){
 	cout<<"enter the room id you want to Book: ";
 	cin>>id;
 	// cout<<endl;
+
+		//the conditions of id;
+	switch(id){
+		case 0:
+		room="single room";
+		room_price=50;
+		break;
+
+		case 1:
+		room="Double room";
+		room_price=90;
+		break;
+
+		case 2:
+		room="Deluxe room";
+		room_price=150;
+		break;
+
+		case 3:
+		room="suite";
+		room_price=250;
+		break;
+
+		default:
+		cout<<"Invalid room id"<<endl;
+		goto label;
+	}
+
+	
 	cout<<"enter the quantity of rooms to book: ";
 	cin>>book_rooms; 	//user input(quantity)
 	cout<<endl;
-	label:
+
+	// Define max occupants for each room type
+	int max_occupants[] = {1, 2, 4, 6};
+
+label:
 	cout<<"enter the number of occupants: "; 
 	cin>>occupant; 		//user input (occupant)
 	cout<<endl<<endl<<endl;
@@ -25,37 +58,17 @@ float CalcFee(){
 		cout<<"Occupant cant be less than 1"<<endl;
 		goto label;
 	}
-		
-	//the conditions of id;
-	switch(id){
-		case 1:
-		room="single room";
-		room_price=50;
-		break;
 
-		case 2:
-		room="Double room";
-		room_price=90;
-		break;
 
-		case 3:
-		room="Deluxe room";
-		room_price=150;
-		break;
 
-		case 4:
-		room="suite";
-		room_price=250;
-		break;
-
-		default:
-		cout<<"Invalid room number"<<endl;
+	// Check if occupants exceed max allowed for the selected room
+	if (id >= 0 && id < 4 && occupant > max_occupants[id]) {
+		cout << "Number of occupants exceeds the maximum allowed for this room type (" << max_occupants[id] << "). Please enter a valid number." << endl;
 		goto label;
 	}
-		
+	
 	total_be=book_rooms*room_price; 	//total price befor discount
 	return total_be;
-	
 }
 
 //declaration of the function
@@ -83,6 +96,7 @@ void display(string room, int book_rooms, float total_be, float final_cost, int 
 }
 
 
+
 int main(){
 
 	string names[]={"single room","Double Room","Deluxe Room","Suite"}; //Basically all of this for just to make the user see our Available Rooms;	
@@ -99,7 +113,7 @@ int main(){
 	cout<<"-----------------------------------------------------------------------------------"<<endl;
 	
 	for(int p=0;p<4;p++){
-		cout<<p<<setw(21)<<names[p]<<setw(22)<<prices[p]<<setw(23)<<occupants[p]<<endl<<endl;
+		cout<<p<<setw(21)<<names[p]<<setw(22)<<prices[p]<<setw(23)<<max_occupants[p]<<endl<<endl;
 	}
 		
 	cout<<endl<<endl<<endl;
