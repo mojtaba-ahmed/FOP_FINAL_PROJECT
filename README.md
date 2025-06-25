@@ -42,41 +42,26 @@ You're looking for any available room for the holiday next month. Below are some
 
 ---
 
+<br>
+<br>
+<br>
+<br>
+
 ## System Flowchart
 
-```mermaid
-flowchart TD
-    A[Program Start] --> B[Display Available Rooms]
-    B --> C[Prompt for Room ID]
-    C --> D[Prompt for Number of Rooms]
-    D --> E[Prompt for Number of Occupants]
-    E --> F[Validate Room ID & Occupants]
-    F --> G{Valid Input?}
-    G -->|No| H[Display Error Message]
-    H --> C
-    G -->|Yes| I[Assign Room Type and Price]
-    I --> J[Calculate Total Price using calcFee()]
-    J --> K[Calculate Final Cost using getDisc()]
-    K --> L{Total Price > 180?}
-    L -->|Yes| M[Apply 5% Discount]
-    L -->|No| N[No Discount Applied]
-    M --> O[Display Booking Summary]
-    N --> O
-    O --> P[Output Final Receipt]
-    P --> Q[Program End]
-```
+![System Flowchart](assets/flowchart.svg)
 
 ---
 
 ## Member Task Distribution
 
-| Member            | Section | Task                                 | Signature          |
-| ----------------- | ------- | ------------------------------------ | ------------------ |
-| **Malek**         | C1S1    | Program Design & Logic               | ********\_******** |
-| **Mohammed**      | C1S1    | Function Implementation              | ********\_******** |
-| **Mojtaba Ahmed** | C1S1    | Report Writing & Documentation       | ********\_******** |
-| **Yousif**        | C1S1    | Testing & Debugging                  | ********\_******** |
-| **Zeyad**         | C1S1    | Code Integration & Output Formatting | ********\_******** |
+| Member            | Section | Task                                 | Signature                  |
+| ----------------- | ------- | ------------------------------------ | -------------------------- |
+| **Malek**         | C1S1    | Program Design & Logic               | **\*\*\*\***\_**\*\*\*\*** |
+| **Mohammed**      | C1S1    | Function Implementation              | **\*\*\*\***\_**\*\*\*\*** |
+| **Mojtaba Ahmed** | C1S1    | Report Writing & Documentation       | **\*\*\*\***\_**\*\*\*\*** |
+| **Yousif**        | C1S1    | Testing & Debugging                  | **\*\*\*\***\_**\*\*\*\*** |
+| **Zeyad**         | C1S1    | Code Integration & Output Formatting | **\*\*\*\***\_**\*\*\*\*** |
 
 ---
 
@@ -84,134 +69,130 @@ flowchart TD
 
 ```cpp
 #include <iostream>
-#include <iomanip>
-#include <string>
+#include<iomanip>
 using namespace std;
+// global variable
+float total_be,discount, room_price,final_cost;
+int id,book_rooms,occupant;
+string room;
 
-// Global variables
-struct Room {
-    string name;
-    double price;
-    int maxOccupants;
-};
 
-// Room data array
-Room rooms[4] = {
-    {"Single Room", 50.0, 1},
-    {"Double Room", 90.0, 2},
-    {"Deluxe Room", 150.0, 4},
-    {"Suite", 250.0, 6}
-};
+//the declaration of the function;
+float CalcFee(){
+	//user input(id)
+	room_num:
+	cout<<"enter the room id you want to Book: ";
+	cin>>id;
+	// cout<<endl;
 
-// Function to calculate total fee
-double calcFee(int numRooms, double pricePerRoom) {
-    return numRooms * pricePerRoom;
+	//Validate room number;
+	switch(id){
+		case 0:
+		room="single room";
+		room_price=50;
+		break;
+
+		case 1:
+		room="Double room";
+		room_price=90;
+		break;
+
+		case 2:
+		room="Deluxe room";
+		room_price=150;
+		break;
+
+		case 3:
+		room="suite";
+		room_price=250;
+		break;
+
+		default:
+		cout<<"Invalid room id"<<endl;
+		goto room_num;
+	}
+
+
+	cout<<"enter the quantity of rooms to book: ";
+	cin>>book_rooms; 	//user input(quantity)
+	cout<<endl;
+
+	int max_occupants[] = {1, 2, 4, 6}; 	// Define max occupants for each room type
+
+	label:
+	cout<<"enter the number of occupants: ";
+	cin>>occupant; 		//user input (occupant)
+	cout<<endl<<endl<<endl;
+
+	if(occupant<1){
+		cout<<"Occupant cant be less than 1"<<endl;
+		goto label;
+	}
+
+	// Check if occupants exceed max allowed for the selected room
+	if (id >= 0 && id < 4 && occupant > max_occupants[id]) {
+		cout << "Number of occupants exceeds the maximum allowed for this room type (" << max_occupants[id] << "). Please enter a valid number." << endl;
+		goto label;
+	}
+
+	total_be=book_rooms*room_price; 	//total price befor discount
+	return total_be;
 }
 
-// Function to calculate discount and final cost
-double getDisc(double totalCost) {
-    if (totalCost > 180.0) {
-        double discount = totalCost * 0.05;
-        return totalCost - discount;
-    }
-    return totalCost;
+//declaration of the function
+float getDisc(){
+	//the condition
+	if (total_be>180){
+		discount=total_be*0.05; 		//the discount
+		final_cost=	total_be-discount; 	//the final cost of the rooms;
+	}
+	return final_cost;
 }
 
-// Function to display available rooms
-void displayRooms() {
-    cout << setw(50) << "=== WELCOME TO OUR HOTEL ===" << endl << endl;
-    cout << "Available Rooms:" << endl << endl;
-    cout << left << setw(10) << "Room ID"
-         << setw(15) << "Room Type"
-         << setw(15) << "Price (RM)"
-         << setw(15) << "Max Occupants" << endl;
-    cout << string(65, '-') << endl;
-
-    for (int i = 0; i < 4; i++) {
-        cout << left << setw(10) << (i + 1)
-             << setw(15) << rooms[i].name
-             << setw(15) << fixed << setprecision(2) << rooms[i].price
-             << setw(15) << rooms[i].maxOccupants << endl;
-    }
-    cout << endl;
+void display(string room, int book_rooms, float total_be, float final_cost, int occupant, int id){
+	cout<<"==================== Booking Summery====================="<<endl;
+	cout<<"Room Type: "<<room<<endl;
+	cout<<"Number of Rooms Booked: "<<book_rooms<<endl;
+	cout<<"Number of Occupants: "<<occupant<<endl;
+	if(total_be>180){ //condition of price more than 180;
+		cout<<"Total price (befor Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl;
+		cout<<"Discount Amount (5%): RM "<<discount<<endl;
+		cout<<"Total price (after discount): RM "<<final_cost<<endl;
+    }else{
+     	cout<<"Total price: RM "<<fixed<<setprecision(2)<<total_be<<endl;
+	}
 }
 
-// Function to validate input
-bool validateInput(int roomId, int occupants) {
-    if (roomId < 1 || roomId > 4) {
-        cout << "Error: Invalid room ID! Please select 1-4." << endl;
-        return false;
-    }
 
-    if (occupants < 1) {
-        cout << "Error: Number of occupants must be at least 1!" << endl;
-        return false;
-    }
 
-    if (occupants > rooms[roomId - 1].maxOccupants) {
-        cout << "Error: Too many occupants for " << rooms[roomId - 1].name
-             << "! Maximum allowed: " << rooms[roomId - 1].maxOccupants << endl;
-        return false;
-    }
+int main(){
 
-    return true;
-}
+	string names[]={"single room","Double Room","Deluxe Room","Suite"}; //Basically all of this for just to make the user see our Available Rooms;
 
-int main() {
-    int roomId, numRooms, occupants;
-    double totalCost, finalCost, discount;
+	string prices[]={"50.00","90.00","150.00","     250.00"};
 
-    // Display available rooms
-    displayRooms();
+	string max_occupants[]={"1","2","4","6"};
 
-    // Get user input with validation
-    do {
-        cout << "Enter the room ID you want to book (1-4): ";
-        cin >> roomId;
-        cout << "Enter the number of rooms to book: ";
-        cin >> numRooms;
-        cout << "Enter the number of occupants: ";
-        cin >> occupants;
-        cout << endl;
+	cout<<setw(67)<<"WELCOME TO OUR HOTEL "<<"\n"<<endl; 	//welcome massage;
 
-        if (!validateInput(roomId, occupants)) {
-            cout << "Please try again." << endl << endl;
-            continue;
-        } else {
-            break;
-        }
-    } while (true);
 
-    // Calculate costs
-    totalCost = calcFee(numRooms, rooms[roomId - 1].price);
-    finalCost = getDisc(totalCost);
-    discount = totalCost - finalCost;
+	cout<<"Available Rooms:"<<endl;
+	cout<<"\n"<<"Room id"<<setw(13)<<"Room type"<<setw(28)<<"price per Room(RM)"<<setw(25)<<"Max occupants"<<"\n"<<endl;
+	cout<<"-----------------------------------------------------------------------------------"<<endl;
 
-    // Display booking summary
-    cout << string(50, '=') << endl;
-    cout << setw(30) << "BOOKING SUMMARY" << endl;
-    cout << string(50, '=') << endl << endl;
+	for(int p=0;p<4;p++){
+		cout<<p<<setw(21)<<names[p]<<setw(22)<<prices[p]<<setw(23)<<max_occupants[p]<<"\n"<<endl;
+	}
 
-    cout << "Room Type: " << rooms[roomId - 1].name << endl;
-    cout << "Number of Rooms Booked: " << numRooms << endl;
-    cout << "Number of Occupants: " << occupants << endl;
-    cout << "Price per Room: RM " << fixed << setprecision(2)
-         << rooms[roomId - 1].price << endl << endl;
+	cout<<"\n"<<"\n"<<endl;
+	//calling the function
+	float total_cost = CalcFee();
+	float final_cost = getDisc();
 
-    cout << "Total Cost (before discount): RM " << totalCost << endl;
-
-    if (discount > 0) {
-        cout << "Discount Applied (5%): RM " << discount << endl;
-        cout << "Final Cost (after discount): RM " << finalCost << endl;
-    } else {
-        cout << "No discount applied (total less than RM 180)" << endl;
-        cout << "Final Cost: RM " << finalCost << endl;
-    }
-
-    cout << endl << string(50, '=') << endl;
-    cout << "Thank you for choosing our hotel!" << endl;
+	display(room, book_rooms, total_cost, final_cost, occupant, id); //calling the function display
 
     return 0;
+
 }
 ```
 
@@ -222,90 +203,120 @@ int main() {
 ### Sample Output 1 (With Discount):
 
 ```
-=== WELCOME TO OUR HOTEL ===
+                                              WELCOME TO OUR HOTEL
 
 Available Rooms:
 
-Room ID   Room Type      Price (RM)     Max Occupants
------------------------------------------------------------------
-1         Single Room    50.00          1
-2         Double Room    90.00          2
-3         Deluxe Room    150.00         4
-4         Suite          250.00         6
+Room id    Room type          price per Room(RM)            Max occupants
 
-Enter the room ID you want to book (1-4): 4
-Enter the number of rooms to book: 2
-Enter the number of occupants: 4
+-----------------------------------------------------------------------------------
+0          single room                 50.00                      1
 
-==================================================
-                BOOKING SUMMARY
-==================================================
+1          Double Room                 90.00                      2
 
-Room Type: Suite
+2          Deluxe Room                150.00                      4
+
+3                Suite                250.00                      6
+
+
+
+
+enter the room id you want to Book: 2
+enter the quantity of rooms to book: 2
+
+enter the number of occupants: 8
+
+
+
+==================== Booking Summery=====================
+Room Type: Deluxe room
 Number of Rooms Booked: 2
-Number of Occupants: 4
-Price per Room: RM 250.00
-
-Total Cost (before discount): RM 500.00
-Discount Applied (5%): RM 25.00
-Final Cost (after discount): RM 475.00
-
-==================================================
+Number of Occupants: 8
+Total price (before Discount): RM 300.00
+Discount Amount (5%): RM 15.00
+Final cost (after discount): RM 285.00
 Thank you for choosing our hotel!
 ```
 
 ### Sample Output 2 (No Discount):
 
 ```
-Enter the room ID you want to book (1-4): 2
-Enter the number of rooms to book: 1
-Enter the number of occupants: 2
+                                              WELCOME TO OUR HOTEL
 
-==================================================
-                BOOKING SUMMARY
-==================================================
+Available Rooms:
 
-Room Type: Double Room
+Room id    Room type          price per Room(RM)            Max occupants
+
+-----------------------------------------------------------------------------------
+0          single room                 50.00                      1
+
+1          Double Room                 90.00                      2
+
+2          Deluxe Room                150.00                      4
+
+3                Suite                250.00                      6
+
+
+
+
+enter the room id you want to Book: 1
+enter the quantity of rooms to book: 1
+
+enter the number of occupants: 2
+
+
+
+==================== Booking Summery=====================
+Room Type: Double room
 Number of Rooms Booked: 1
 Number of Occupants: 2
-Price per Room: RM 90.00
-
-Total Cost (before discount): RM 90.00
-No discount applied (total less than RM 180)
-Final Cost: RM 90.00
-
-==================================================
+Total price: RM 90.00
 Thank you for choosing our hotel!
 ```
 
 ### Sample Output 3 (Error Handling):
 
 ```
-Enter the room ID you want to book (1-4): 1
-Enter the number of rooms to book: 1
-Enter the number of occupants: 3
+                                              WELCOME TO OUR HOTEL
 
-Error: Too many occupants for Single Room! Maximum allowed: 1
-Please try again.
+Available Rooms:
 
-Enter the room ID you want to book (1-4): 1
-Enter the number of rooms to book: 1
-Enter the number of occupants: 1
+Room id    Room type          price per Room(RM)            Max occupants
 
-==================================================
-                BOOKING SUMMARY
-==================================================
+-----------------------------------------------------------------------------------
+0          single room                 50.00                      1
 
-Room Type: Single Room
+1          Double Room                 90.00                      2
+
+2          Deluxe Room                150.00                      4
+
+3                Suite                250.00                      6
+
+
+
+
+enter the room id you want to Book: 1
+enter the quantity of rooms to book: 1
+
+enter the number of occupants: 3
+
+
+
+Number of occupants exceeds the maximum allowed for this room type (2). Please enter a valid number.
+enter the number of occupants: 4
+
+
+
+Number of occupants exceeds the maximum allowed for this room type (2). Please enter a valid number.
+enter the number of occupants: 2
+
+
+
+==================== Booking Summery=====================
+Room Type: Double room
 Number of Rooms Booked: 1
-Number of Occupants: 1
-Price per Room: RM 50.00
-
-Total Cost (before discount): RM 50.00
-No discount applied (total less than RM 180)
-Final Cost: RM 50.00
-
-==================================================
+Number of Occupants: 2
+Total price: RM 90.00
 Thank you for choosing our hotel!
 ```
 
@@ -362,7 +373,3 @@ Thank you for choosing our hotel!
 2. **Course Textbook:** _Fundamentals of Programming Concepts_ - Chapter 8: Arrays and Data Structures
 3. **Lecture Notes:** _Week 10-12: Advanced Function Usage and Data Organization_
 4. **Lab Manual:** _BSPT0024 Programming Exercises - Input/Output Formatting_
-
----
-
-**Note:** This report includes all required components as specified in the project rubric, including proper code documentation, complete flowchart, member task distribution, and comprehensive output examples demonstrating all program features.

@@ -60,7 +60,7 @@ float CalcFee(){
 	}
 
 	// Check if occupants exceed max allowed for the selected room
-	if (id >= 0 && id < 4 && occupant > max_occupants[id]) {
+	if (id >= 0 && id < 4 && occupant > max_occupants[id]*book_rooms) {
 		cout << "Number of occupants exceeds the maximum allowed for this room type (" << max_occupants[id] << "). Please enter a valid number." << endl;
 		goto label;
 	}
@@ -85,11 +85,13 @@ void display(string room, int book_rooms, float total_be, float final_cost, int 
 	cout<<"Number of Rooms Booked: "<<book_rooms<<endl;
 	cout<<"Number of Occupants: "<<occupant<<endl;
 	if(total_be>180){ //condition of price more than 180;
-		cout<<"Total price (befor Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl;
+		cout<<"Total price (before Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl;
 		cout<<"Discount Amount (5%): RM "<<discount<<endl;
-		cout<<"Total price (after discount): RM "<<final_cost<<endl;
+		cout<<"Final cost (after discount): RM "<<final_cost<<endl;
+		cout<<"Thank you for choosing our hotel!"<<endl;
     }else{
      	cout<<"Total price: RM "<<fixed<<setprecision(2)<<total_be<<endl;
+		cout<<"Thank you for choosing our hotel!"<<endl;
 	}
 }
 
