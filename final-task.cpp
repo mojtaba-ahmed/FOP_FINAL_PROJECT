@@ -49,7 +49,7 @@ float CalcFee(){
 		break;
 
 		default:
-		cout<<"Invalid room id"<<endl;
+		cout<<"Invalid room number"<<endl;
 		goto label;
 	}
 		
@@ -68,6 +68,20 @@ float getDisc(){
 	return final_cost;
 }
 
+void display(string room, int book_rooms, float total_be, float final_cost, int occupant, int id){
+	cout<<"==================== Booking Summery====================="<<endl<<endl;
+	cout<<"Room Type: "<<room<<endl<<endl;
+	cout<<"Number of Rooms Booked: "<<book_rooms<<endl<<endl;
+	cout<<"Number of Occupants: "<<occupant<<endl<<endl;
+	if(total_be>180){ //condition of price more than 180;
+		cout<<"Total price (befor Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl<<endl;
+		cout<<"Discount Amount (5%): RM "<<discount<<endl<<endl;
+		cout<<"Total price (after discount): RM "<<final_cost<<endl<<endl;
+    }else{
+     	cout<<"Total price: RM "<<fixed<<setprecision(2)<<total_be<<endl;
+	}
+}
+
 
 int main(){
 
@@ -75,7 +89,7 @@ int main(){
 
 	string prices[]={"50.00","90.00","150.00","     250.00"};
 
-	string occupants[]={"1","2","4","6"};
+	string max_occupants[]={"1","2","4","6"};
 
 	cout<<setw(67)<<"WELCOME TO OUR HOTEL "<<endl<<endl<<endl; 	//welcome massage;
 
@@ -88,35 +102,18 @@ int main(){
 		cout<<p<<setw(21)<<names[p]<<setw(22)<<prices[p]<<setw(23)<<occupants[p]<<endl<<endl;
 	}
 		
-	//untile Here;
-
 	cout<<endl<<endl<<endl;
 	//calling the function
 	CalcFee();
 	getDisc();		
 		
 		
-	if (occupant>=1){//condition of number of occupants
-		cout<<"==================== Booking Summery====================="<<endl<<endl;
-		cout<<"Room Type: "<<room<<endl<<endl;
-		cout<<"Number of Rooms Booked: "<<book_rooms<<endl<<endl;
-		cout<<"Number of Occupants: "<<occupant<<endl<<endl;
+
 		
-	
-	}else{
-		cout<<"there is no occupants (please enter the number of occupants) you cant enter (zero)"<<endl;
-		return 0;
-	}
+	display(room, book_rooms, total_be, final_cost, occupant, id); //calling the function display
 	
 	
 	
-	
-	if(total_be>180){ //condition of price more than 180;
-		cout<<"Total price (befor Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl<<endl;
-		cout<<"Discount Amount (5%): RM "<<discount<<endl<<endl;
-		cout<<"Total price (after discount): RM "<<final_cost<<endl<<endl;
-    }else{
-     	cout<<"Total price: RM "<<fixed<<setprecision(2)<<total_be<<endl;
-	}
+
 }
 
