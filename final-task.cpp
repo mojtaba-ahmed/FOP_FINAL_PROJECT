@@ -1,4 +1,4 @@
-#include <iostream>;
+#include <iostream>
 #include<iomanip>
 using namespace std;
 // global variable
@@ -9,46 +9,63 @@ string room;
 //untile here
 
 //the declaration of the function;
-int CalcFee(){
+float CalcFee(){
 //user input(id)
 	cout<<"enter the room id you want to Book: ";
-		cin>>id;
-		cout<<endl;
-		//user input(quantity)
-		cout<<"enter the quantity of rooms to book: ";
-		cin>>book_rooms;
-		cout<<endl;
-		//user input (occupant)
-		cout<<"enter the number of occupants: ";
-		cin>>occupant;
-		cout<<endl<<endl<<endl;
-		//end user input;
+	cin>>id;
+	// cout<<endl;
+	//user input(quantity)
+	cout<<"enter the quantity of rooms to book: ";
+	cin>>book_rooms;
+	cout<<endl;
+	//user input (occupant)
+	label:
+	cout<<"enter the number of occupants: ";
+	cin>>occupant;
+	cout<<endl<<endl<<endl;
+	//end user input;
+
+	if(occupant<1){
+		cout<<"Occupant cant be less than 1"<<endl;
+		goto label;
+	}
 		
-		//the conditions of id;
-			if(id==0){
+	//the conditions of id;
+	switch(id){
+		case 1:
 		room="single room";
 		room_price=50;
-	
-	}else if(id==1){
+		break;
+
+		case 2:
 		room="Double room";
 		room_price=90;
-	}else if(id==2){
+		break;
+
+		case 3:
 		room="Deluxe room";
 		room_price=150;
-		
-	}else if(id==3){
+		break;
+
+		case 4:
 		room="suite";
 		room_price=250;
+		break;
+
+		default:
+		cout<<"Invalid room id"<<endl;
+		goto label;
 	}
 	//end condition;
 		
-//total price befor discount
+	//total price befor discount
 	total_be=book_rooms*room_price;
+	return total_be;
 	
 }
 
 //declaration of the function
-int getDisc(){
+float getDisc(){
 
 	//the condition 
 	if (total_be>180){
@@ -58,6 +75,7 @@ int getDisc(){
 	final_cost=	total_be-discount;
 	
 	}
+	return final_cost;
 }
 //end of function;
 
@@ -71,7 +89,7 @@ string prices[]={"50.00","90.00","150.00","     250.00"};
 string occupants[]={"1","2","4","6"};
 
 //welcome massage;
-cout<<setw(67)<<"WELCOME IN OUR HOTEL "<<endl<<endl<<endl;
+cout<<setw(67)<<"WELCOME TO OUR HOTEL "<<endl<<endl<<endl;
 
 	cout<<"Available Rooms:"<<endl;
 	cout<<endl<<"Room id"<<setw(13)<<"Room type"<<setw(28)<<"price per Room(RM)"<<setw(25)<<"Max occupants"<<endl<<endl;
