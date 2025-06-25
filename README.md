@@ -40,8 +40,33 @@ You're looking for any available room for the holiday next month. Below are some
 - Function `main()` prompts for room ID, quantity, and occupants with proper validation
 - Print a formatted receipt with booking summary
 
+<br>
+<br>
+<br>
+<br>
+
 ---
 
+## Member Task Distribution
+
+| Member       | Section | Task                                 | Signature                  |
+| ------------ | ------- | ------------------------------------ | -------------------------- |
+| **Malek**    | C1S1    | Program Design & Logic               | **\*\*\*\***\_**\*\*\*\*** |
+| **Mohammed** | C1S1    | Function Implementation              | **\*\*\*\***\_**\*\*\*\*** |
+| **Mojtaba**  | C1S1    | Flowchart & Report Documenting       | **\*\*\*\***\_**\*\*\*\*** |
+| **Yousif**   | C1S1    | Testing & Debugging                  | **\*\*\*\***\_**\*\*\*\*** |
+| **Zeyad**    | C1S1    | Code Integration & Output Formatting | **\*\*\*\***\_**\*\*\*\*** |
+
+---
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -49,21 +74,14 @@ You're looking for any available room for the holiday next month. Below are some
 
 ## System Flowchart
 
-![System Flowchart](assets/flowchart.svg)
+## ![System Flowchart](assets/flowchart.svg)
 
 ---
 
-## Member Task Distribution
-
-| Member            | Section | Task                                 | Signature                  |
-| ----------------- | ------- | ------------------------------------ | -------------------------- |
-| **Malek**         | C1S1    | Program Design & Logic               | **\*\*\*\***\_**\*\*\*\*** |
-| **Mohammed**      | C1S1    | Function Implementation              | **\*\*\*\***\_**\*\*\*\*** |
-| **Mojtaba Ahmed** | C1S1    | Report Writing & Documentation       | **\*\*\*\***\_**\*\*\*\*** |
-| **Yousif**        | C1S1    | Testing & Debugging                  | **\*\*\*\***\_**\*\*\*\*** |
-| **Zeyad**         | C1S1    | Code Integration & Output Formatting | **\*\*\*\***\_**\*\*\*\*** |
-
----
+<br>
+<br>
+<br>
+<br>
 
 ## Source Code
 
@@ -196,6 +214,21 @@ int main(){
 }
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ---
 
 ## Program Output Examples
@@ -238,6 +271,19 @@ Final cost (after discount): RM 285.00
 Thank you for choosing our hotel!
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ### Sample Output 2 (No Discount):
 
 ```
@@ -273,6 +319,21 @@ Number of Occupants: 2
 Total price: RM 90.00
 Thank you for choosing our hotel!
 ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ### Sample Output 3 (Error Handling):
 
