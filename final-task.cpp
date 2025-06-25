@@ -9,12 +9,13 @@ string room;
 
 //the declaration of the function;
 float CalcFee(){
-//user input(id)
+	//user input(id)
+	room_num:
 	cout<<"enter the room id you want to Book: ";
 	cin>>id;
 	// cout<<endl;
 
-		//the conditions of id;
+	//Validate room number;
 	switch(id){
 		case 0:
 		room="single room";
@@ -38,18 +39,17 @@ float CalcFee(){
 
 		default:
 		cout<<"Invalid room id"<<endl;
-		goto label;
+		goto room_num;
 	}
 
-	
+
 	cout<<"enter the quantity of rooms to book: ";
 	cin>>book_rooms; 	//user input(quantity)
 	cout<<endl;
 
-	// Define max occupants for each room type
-	int max_occupants[] = {1, 2, 4, 6};
+	int max_occupants[] = {1, 2, 4, 6}; 	// Define max occupants for each room type
 
-label:
+	label:
 	cout<<"enter the number of occupants: "; 
 	cin>>occupant; 		//user input (occupant)
 	cout<<endl<<endl<<endl;
@@ -58,8 +58,6 @@ label:
 		cout<<"Occupant cant be less than 1"<<endl;
 		goto label;
 	}
-
-
 
 	// Check if occupants exceed max allowed for the selected room
 	if (id >= 0 && id < 4 && occupant > max_occupants[id]) {
@@ -82,14 +80,14 @@ float getDisc(){
 }
 
 void display(string room, int book_rooms, float total_be, float final_cost, int occupant, int id){
-	cout<<"==================== Booking Summery====================="<<endl<<endl;
-	cout<<"Room Type: "<<room<<endl<<endl;
-	cout<<"Number of Rooms Booked: "<<book_rooms<<endl<<endl;
-	cout<<"Number of Occupants: "<<occupant<<endl<<endl;
+	cout<<"==================== Booking Summery====================="<<endl;
+	cout<<"Room Type: "<<room<<endl;
+	cout<<"Number of Rooms Booked: "<<book_rooms<<endl;
+	cout<<"Number of Occupants: "<<occupant<<endl;
 	if(total_be>180){ //condition of price more than 180;
-		cout<<"Total price (befor Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl<<endl;
-		cout<<"Discount Amount (5%): RM "<<discount<<endl<<endl;
-		cout<<"Total price (after discount): RM "<<final_cost<<endl<<endl;
+		cout<<"Total price (befor Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl;
+		cout<<"Discount Amount (5%): RM "<<discount<<endl;
+		cout<<"Total price (after discount): RM "<<final_cost<<endl;
     }else{
      	cout<<"Total price: RM "<<fixed<<setprecision(2)<<total_be<<endl;
 	}
@@ -105,26 +103,23 @@ int main(){
 
 	string max_occupants[]={"1","2","4","6"};
 
-	cout<<setw(67)<<"WELCOME TO OUR HOTEL "<<endl<<endl<<endl; 	//welcome massage;
+	cout<<setw(67)<<"WELCOME TO OUR HOTEL "<<"\n"<<endl; 	//welcome massage;
 
 
 	cout<<"Available Rooms:"<<endl;
-	cout<<endl<<"Room id"<<setw(13)<<"Room type"<<setw(28)<<"price per Room(RM)"<<setw(25)<<"Max occupants"<<endl<<endl;
+	cout<<"\n"<<"Room id"<<setw(13)<<"Room type"<<setw(28)<<"price per Room(RM)"<<setw(25)<<"Max occupants"<<"\n"<<endl;
 	cout<<"-----------------------------------------------------------------------------------"<<endl;
 	
 	for(int p=0;p<4;p++){
-		cout<<p<<setw(21)<<names[p]<<setw(22)<<prices[p]<<setw(23)<<max_occupants[p]<<endl<<endl;
+		cout<<p<<setw(21)<<names[p]<<setw(22)<<prices[p]<<setw(23)<<max_occupants[p]<<"\n"<<endl;
 	}
 		
-	cout<<endl<<endl<<endl;
+	cout<<"\n"<<"\n"<<endl;
 	//calling the function
-	CalcFee();
-	getDisc();		
+	float total_cost = CalcFee();
+	float final_cost = getDisc();		
 		
-		
-
-		
-	display(room, book_rooms, total_be, final_cost, occupant, id); //calling the function display
+	display(room, book_rooms, total_cost, final_cost, occupant, id); //calling the function display
 	
 	
 	
