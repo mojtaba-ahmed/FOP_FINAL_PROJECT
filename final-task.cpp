@@ -3,7 +3,7 @@
 using namespace std;
 // global variable
 float total_be,discount, room_price,final_cost;
-int id,book_rooms,occupant;
+int id,booked_rooms,occupant;
 string room;
 
 
@@ -44,7 +44,7 @@ float CalcFee(){
 
 
 	cout<<"enter the quantity of rooms to book: ";
-	cin>>book_rooms; 	//user input(quantity)
+	cin>>booked_rooms; 	//user input(quantity)
 	cout<<endl;
 
 	int max_occupants[] = {1, 2, 4, 6}; 	// Define max occupants for each room type
@@ -60,12 +60,12 @@ float CalcFee(){
 	}
 
 	// Check if occupants exceed max allowed for the selected room
-	if (id >= 0 && id < 4 && occupant > max_occupants[id]*book_rooms) {
+	if (id >= 0 && id < 4 && occupant > max_occupants[id]*booked_rooms) {
 		cout << "Number of occupants exceeds the maximum allowed for this room type (" << max_occupants[id] << "). Please enter a valid number." << endl;
 		goto label;
 	}
 	
-	total_be=book_rooms*room_price; 	//total price befor discount
+	total_be=booked_rooms*room_price; 	//total price befor discount
 	return total_be;
 }
 
@@ -79,10 +79,10 @@ float getDisc(){
 	return final_cost;
 }
 
-void display(string room, int book_rooms, float total_be, float final_cost, int occupant, int id){
+void display(string room, int booked_rooms, float total_be, float final_cost, int occupant, int id){
 	cout<<"==================== Booking Summery====================="<<endl;
 	cout<<"Room Type: "<<room<<endl;
-	cout<<"Number of Rooms Booked: "<<book_rooms<<endl;
+	cout<<"Number of Rooms Booked: "<<booked_rooms<<endl;
 	cout<<"Number of Occupants: "<<occupant<<endl;
 	if(total_be>180){ //condition of price more than 180;
 		cout<<"Total price (before Discount): RM "<<fixed<<setprecision(2)<<total_be<<endl;
@@ -121,7 +121,7 @@ int main(){
 	float total_cost = CalcFee();
 	float final_cost = getDisc();		
 		
-	display(room, book_rooms, total_cost, final_cost, occupant, id); //calling the function display
+	display(room, booked_rooms, total_cost, final_cost, occupant, id); //calling the function display
 	
 	
 	
