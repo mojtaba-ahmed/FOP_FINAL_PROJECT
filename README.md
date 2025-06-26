@@ -49,39 +49,21 @@ You're looking for any available room for the holiday next month. Below are some
 
 ## Member Task Distribution
 
-| Member       | Section | Task                                 | Signature                  |
-| ------------ | ------- | ------------------------------------ | -------------------------- |
-| **Malek**    | C1S1    | Program Design & Logic               | **\*\*\*\***\_**\*\*\*\*** |
-| **Mohammed** | C1S1    | Function Implementation              | **\*\*\*\***\_**\*\*\*\*** |
-| **Mojtaba**  | C1S1    | Flowchart & Report Documenting       | **\*\*\*\***\_**\*\*\*\*** |
-| **Yousif**   | C1S1    | Testing & Debugging                  | **\*\*\*\***\_**\*\*\*\*** |
-| **Zeyad**    | C1S1    | Code Integration & Output Formatting | **\*\*\*\***\_**\*\*\*\*** |
+| Member       | Section | Task                                 |
+| ------------ | ------- | ------------------------------------ |
+| **Malek**    | C1S1    | Program Design & Logic               |
+| **Mohammed** | C1S1    | Function Implementation              |
+| **Mojtaba**  | C1S1    | Flowchart & Report Documenting       |
+| **Yousif**   | C1S1    | Testing & Debugging                  |
+| **Zeyad**    | C1S1    | Code Integration & Output Formatting |
 
 ---
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 ## System Flowchart
 
 ## ![System Flowchart](assets/flowchart.svg)
 
 ---
-
-<br>
-<br>
-<br>
-<br>
 
 ## Source Code
 
@@ -331,9 +313,6 @@ Thank you for choosing our hotel!
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
 
 ### Sample Output 3 (Error Handling):
 
@@ -385,52 +364,44 @@ Thank you for choosing our hotel!
 
 ## Conclusion
 
-### What was accomplished:
+### What we accomplished beyond the basic requirements:
 
-1. **Successfully developed a comprehensive Hotel Room Booking System in C++** that meets all project requirements
-2. **Implemented robust input validation** to ensure data integrity and user-friendly error handling
-3. **Created efficient functions** for fee calculation (`calcFee()`) and discount application (`getDisc()`)
-4. **Designed a professional user interface** with proper formatting and clear booking summaries
-5. **Utilized arrays effectively** to store and manage room information as specified in requirements
+1. Added input validation - The program checks if users enter valid room IDs and won't let them continue with wrong numbers
 
-### What was learned:
+2. Added occupancy limits - We made sure people can't book more occupants than the room allows (like trying to put 5 people in a single room)
 
-1. **Advanced programming concepts** including structures, arrays, functions with parameters and return values
-2. **Input validation techniques** and error handling to create robust applications
-3. **Professional code formatting** and documentation practices for maintainable code
-4. **Team collaboration skills** through effective task distribution and integration
-5. **Problem-solving methodologies** for debugging and optimizing program logic
+3. Made error handling - When users enter wrong information, the program asks them to try again instead of crashing
 
-### Technical skills developed:
+4. Improved the user interface - We made a nice welcome message and formatted table showing all available rooms
 
-1. **Function design** with proper parameter passing and return value handling
-2. **Data structure usage** with arrays and structures for organized data management
-3. **Conditional logic implementation** for business rules (discounts, validation)
-4. **Output formatting** using `iomanip` library for professional presentation
-5. **Code organization** and modular programming principles
+### What we learned:
 
-### Challenges faced and overcome:
+1. How to write functions and make them work together in a program
 
-1. **Input validation complexity** - Resolved by creating a dedicated validation function
-2. **Data organization** - Implemented structure arrays for better data management
-3. **Function parameter passing** - Ensured functions receive and return appropriate values
-4. **Output formatting consistency** - Used `setw()` and `setprecision()` for aligned output
-5. **Team coordination** - Established clear task division and regular code integration
+2. How to use arrays to store different types of information
+
+3. How to check user input and show error messages when something is wrong
+
+4. How to work as a team by dividing tasks between group members
+
+5. How to format output to make it look professional
+
+This project helped us understand the basics of programming and how to solve problems using code. We learned that programming requires patience and careful planning, but it's rewarding when everything works correctly.
 
 ---
 
 ## References
 
-### Online Resources:
-
-1. **Stack Overflow.** (2024). _C++ Programming Help and Best Practices_. Retrieved from https://stackoverflow.com/questions/tagged/c%2B%2B
-2. **W3Schools.** (2024). _C++ Tutorial - Functions, Arrays, and Input/Output_. Retrieved from https://www.w3schools.com/cpp/
-3. **GeeksforGeeks.** (2024). _C++ Input Validation and Error Handling_. Retrieved from https://www.geeksforgeeks.org/c-plus-plus/
-4. **CPlusPlus.com.** (2024). _C++ Reference Documentation_. Retrieved from https://www.cplusplus.com/reference/
-
 ### Academic Resources:
 
-1. **Course Textbook:** _Fundamentals of Programming Concepts_ - Chapter 7: Functions and Parameter Passing
-2. **Course Textbook:** _Fundamentals of Programming Concepts_ - Chapter 8: Arrays and Data Structures
-3. **Lecture Notes:** _Week 10-12: Advanced Function Usage and Data Organization_
-4. **Lab Manual:** _BSPT0024 Programming Exercises - Input/Output Formatting_
+1. Course Slides: Fundamentals of Programming Concepts - Chapter 3: TECHNICAL APPROACHES
+
+TO PROGRAMMING
+
+2. Course Slides: Fundamentals of Programming Concepts - Chapter 7: ARRAYS
+
+### Online Resources:
+
+1. [Stack Overflow. (2024). C++ Programming Help and Best Practices.](https://stackoverflow.com/questions/tagged/c%2B%2B)
+
+2. [GeeksforGeeks. (2024). C++ Input Validation and Error Handling.](https://www.geeksforgeeks.org/c-plus-plus/)
